@@ -51,18 +51,21 @@
 var faker = require("faker");
 let students = [];
 
-for (let i = 0; i < 20; i++) {
-  var student = {
-    id: i + 1,
-    fname: faker.name.firstName(),
-    lname: faker.name.lastName(),
-    email: faker.internet.email(),
-    avatar: faker.internet.avatar(),
-    phone: faker.phone.phoneNumberFormat(),
-    status: "Active"
-  };
-  students.push(student);
+function getusers() {
+  for (let i = 0; i < 50; i++) {
+    var student = {
+      id: i + 1,
+      fname: faker.name.firstName(),
+      lname: faker.name.lastName(),
+      email: faker.internet.email(),
+      avatar: faker.internet.avatar(),
+      phone: faker.phone.phoneNumberFormat(),
+      status: "Active"
+    };
+    students.push(student);
+  }
 }
+
 
 function getpageHeight(e) {
   const page = e.parentElement.offsetHeight
@@ -80,9 +83,15 @@ export default {
       size: 0,
     };
   },
+  beforeCreate() {
+    getusers()
+  },
   mounted() {
     this.size = getpageHeight(this.$el)
   },
+  destroyed() {
+    students = []
+  }
 };
 </script>
 
