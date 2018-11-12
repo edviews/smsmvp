@@ -27,7 +27,14 @@
     </Sider>
     <Layout>
       <Header :style="{padding: 0}" class="layout-header-bar">
-        <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
+        <Row>
+          <Col span="3">
+            <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
+          </Col>
+          <Col span="10" offset="10">
+            <Input class="search" search enter-button="Search" placeholder="Enter something..."  />
+          </Col>
+        </Row>  
       </Header>
       <Content :style="{margin: '20px', minHeight: '260px'}">
         <router-view/>
@@ -86,6 +93,10 @@ export default {
   background: #5b6270;
   border-radius: 3px;
   margin: 15px auto;
+}
+
+.search {
+  margin-top: 14px;
 }
 
 .menu-icon {
